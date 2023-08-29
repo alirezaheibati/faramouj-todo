@@ -22,3 +22,15 @@ class Todo {
 }
 
 let todosList: Todo[] = [];
+
+/**
+ * Converts given timestamp to string
+ * @returns {string} Returns the converted date to following format: mm:ss - dd. month year.
+ */
+function convertTimeStamp(timeStamp: number): string {
+  const todoDate = new Date(timeStamp);
+  return `${todoDate.getHours()}: ${todoDate.getMinutes()} - ${todoDate.getDate()}.${todoDate.toLocaleString(
+    "en-US",
+    { month: "short" }
+  )} ${todoDate.getFullYear()}`;
+}
