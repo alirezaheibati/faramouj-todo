@@ -3,10 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>Faramouj Todo</title>
   </head>
   <body>
-    <h1>hi there</h1>
+    <div class="app-container">
+      <h2 class="app-title">Faramouj Todo List</h2>
+      <form class="todo-form" id="todo-form">
+        <input type="text" placeholder="todo title" id="todo-form_todo" />
+        <textarea
+          placeholder="todo description"
+          id="todo-form_description"
+        ></textarea>
+        <button type="submit" class="todo-form_btn" id="todo-form_send">
+          Add Todo
+        </button>
+      </form>
+
+      <div class="todos-container">
+        <h2>Undone Todos</h2>
+        <ul class="todos-list_container" id="undone-todos_container"></ul>
+      </div>
+      <div class="todos-container">
+        <h2>Done Todos</h2>
+        <ul class="todos-list_container" id="done-todos_container"></ul>
+      </div>
+    </div>
     <script src="bundle.js" defer></script>
   </body>
 </html>
