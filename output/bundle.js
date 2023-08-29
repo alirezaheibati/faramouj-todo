@@ -30,6 +30,13 @@ var description = document.getElementById("todo-form_description");
 var todoForm = document.getElementById("todo-form");
 var unDoneConatiner = document.getElementById("undone-todos_container");
 var doneConatiner = document.getElementById("done-todos_container");
+/** Class representing a todo.
+ * * @param {string} id - id of todo.
+ * @param {string} title - title of todo.
+ *  @param {string} description - description of todo.
+ *  @param {"done" | "undone"} category - category of todo.
+ *  @param {number[]} timeStamp - array of creation and modification dates of todo.
+ */
 var Todo = /** @class */ (function () {
   function Todo(title, description, time) {
     this.id = String(Math.random());
@@ -145,7 +152,6 @@ var renderTodos = function (todos) {
         renderTodos(todosList);
       }
     });
-    // if (todo.category === "undone") {
     newTodo.innerHTML = "<h3>"
       .concat(todo.title, "</h3>\n    <p>\n    Description: ")
       .concat(todo.description, "\n    </p>\n    <p>\n       Creation Date:")
@@ -210,8 +216,10 @@ todo.addEventListener("input", function () {
 description.addEventListener("input", function () {
   description.classList.remove("invalid");
 });
+/**
+ * return stored array and if not existing return an empty array
+ */
 if (sessionStorage.getItem("wave")) {
-  // return stored array and if not existing return an empty array
   todosList = JSON.parse(sessionStorage.getItem("wave") || "[]");
   renderTodos(todosList);
 }

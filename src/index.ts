@@ -5,7 +5,13 @@ const description = <HTMLInputElement>(
 const todoForm = document.getElementById("todo-form");
 const unDoneConatiner = document.getElementById("undone-todos_container");
 const doneConatiner = document.getElementById("done-todos_container");
-
+/** Class representing a todo.
+ * * @param {string} id - id of todo.
+ * @param {string} title - title of todo.
+ *  @param {string} description - description of todo.
+ *  @param {"done" | "undone"} category - category of todo.
+ *  @param {number[]} timeStamp - array of creation and modification dates of todo.
+ */
 class Todo {
   id: string;
   title: string;
@@ -125,7 +131,6 @@ const renderTodos = (todos: Todo[]): void => {
       }
     });
 
-    // if (todo.category === "undone") {
     newTodo.innerHTML = `<h3>${todo.title}</h3>
     <p>
     Description: ${todo.description}
@@ -179,12 +184,14 @@ todoForm?.addEventListener("submit", (e: SubmitEvent) => {
   todo.value = "";
   description.value = "";
 });
+
 /**
  * removes invalid class from input
  */
 todo.addEventListener("input", () => {
   todo.classList.remove("invalid");
 });
+
 /**
  * removes invalid class from textarea
  */
@@ -192,8 +199,10 @@ description.addEventListener("input", () => {
   description.classList.remove("invalid");
 });
 
+/**
+ * return stored array and if not existing return an empty array
+ */
 if (sessionStorage.getItem("wave")) {
-  // return stored array and if not existing return an empty array
   todosList = JSON.parse(sessionStorage.getItem("wave") || "[]");
   renderTodos(todosList);
 }
