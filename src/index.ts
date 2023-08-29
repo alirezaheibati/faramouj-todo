@@ -4,7 +4,7 @@ const description = <HTMLInputElement>(
 );
 const todoForm = document.getElementById("todo-form");
 const unDoneConatiner = document.getElementById("undone-todos_container");
-const doneConatiner = document.getElementById("todos-list_container");
+const doneConatiner = document.getElementById("done-todos_container");
 
 class Todo {
   id: string;
@@ -151,3 +151,49 @@ const renderTodos = (todos: Todo[]): void => {
   });
   sessionStorage.setItem("wave", JSON.stringify(todosList));
 };
+
+/**
+ * checks from input fields validity and if so adds new todo
+ */
+todoForm?.addEventListener("submit", (e: SubmitEvent) => {
+  e.preventDefault();
+  if (todo.value.trim() === "") {
+    todo.classList.add("invalid");
+    return;
+  }
+  if (description.value.trim() === "") {
+    description.classList.add("invalid");
+    return;
+  }
+
+  todosList.push({
+    id: String(Math.random()),
+    title: todo.value,
+    description: description.value,
+    category: "undone",
+    timeStamp: [+new Date()],
+  });
+  renderTodos(todosList);
+  sessionStorage.setItem("wave", JSON.stringify(todosList));
+
+  todo.value = "";
+  description.value = "";
+});
+/**
+ * removes invalid class from input
+ */
+todo.addEventListener("input", () => {
+  todo.classList.remove("invalid");
+});
+/**
+ * removes invalid class from textarea
+ */
+description.addEventListener("input", () => {
+  description.classList.remove("invalid");
+});
+
+if (sessionStorage.getItem("wave")) {
+  // return stored array and if not existing return an empty array
+  todosList = JSON.parse(sessionStorage.getItem("wave") || "[]");
+  renderTodos(todosList);
+}
