@@ -1,1 +1,1 @@
-(()=>{"use strict";console.log("helooooo"),console.log("helooooo!!!")})();
+(()=>{"use strict";document.getElementById("todo-form_todo"),document.getElementById("todo-form_description"),document.getElementById("todo-form"),document.getElementById("undone-todos_container"),document.getElementById("todos-list_container")})();
